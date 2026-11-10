@@ -702,7 +702,7 @@ def certify(model, pilot, counts, ks=(5, 10), mode='search', selected=None, taus
               (refined on A), lambda_k = k-th largest of {L(x): x in A} u {L0(x): x reached by the beam, x not in A}
               (distinct strings), and a certificate winner is an x in A certified above some y for some queried k.
               C = {x : U0(x) >= theta}, W = C u A (refined bounds on A); counts over W; no IN filter.
-      Proof that the 'tight' labels equal enumeration (rule written with the coordinator, H3). Let L_(k) be the k-th
+      Proof that the 'tight' labels equal enumeration. Let L_(k) be the k-th
       largest L over all 2^m strings and Z = {z : L(z) >= L_(k)}, |Z| >= k. (i) lambda_k <= L_(k) (k-th largest of a
       subset of the values of distinct strings) and lambda_kmax <= lambda_k, so theta <= L_(k) for every queried k.
       (ii) Z is inside W: z in A, or z not in A with U0(z) >= L0(z) = L(z) >= L_(k) >= theta; so L_(k) is the k-th

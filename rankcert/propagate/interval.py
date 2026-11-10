@@ -4,7 +4,7 @@
     s_g = parity * c_g * prod_{subcircuits without held bits} E_{g,i},   S_{g,b} = sum_y u_{g,b}(y).
 
 Every factor is replaced by its interval over the region; products use all four corner products; shared subexperiments
-are treated as independent intervals (valid on the region event, possibly loose). Strings are indexed in BLOCK ORDER:
+are treated as independent intervals (valid on the region event). Strings are indexed in BLOCK ORDER:
 index(x) = sum_b x_b * prod_{b' < b} 2^{m_b'} (use `to_block_order` to permute a natural-order array).
 """
 from __future__ import annotations

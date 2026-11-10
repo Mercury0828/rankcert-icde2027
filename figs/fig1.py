@@ -40,8 +40,8 @@ for t, r in zip(labs, rows):
 ax.set_xlabel('Rank in target')
 ax.set_ylabel('Probability (%)')
 from matplotlib.lines import Line2D  # noqa: E402
-h = [Line2D([], [], color='#1f4e8c', lw=3, label='Ours, IN'), Line2D([], [], color='#8fb3de', lw=3, label='Ours, UND'),
-     Line2D([], [], color='#9a9a9a', lw=0.8, label='R-CP, UND'),
+h = [Line2D([], [], color='#1f4e8c', lw=3, label='Ours, in'), Line2D([], [], color='#8fb3de', lw=3, label='Ours, undecided'),
+     Line2D([], [], color='#9a9a9a', lw=0.8, label='R-CP, undecided'),
      Line2D([], [], marker='o', color='black', ls='', ms=2.5, label='Target'),
      Line2D([], [], marker='x', color='#c0392b', ls='', ms=3.5, label='Estimate'),
      Line2D([], [], color='black', lw=0.6, ls='--', label='10th target value')]

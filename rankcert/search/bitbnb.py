@@ -1,4 +1,4 @@
-"""R-3a (Phase-0 D3 repair attempt, pre-registered in derisk/PREREG.md, appendix "2026-11-07 ≈ 11:10"): bit-level branch and bound
+"""R-3a: bit-level branch and bound
 over all m output bits, processed level by level and vectorised over the frontier.
 
 A branch at a level fixes blocks 0..j-1 completely (values v_0..v_{j-1}) and the high bits of block j, i.e.

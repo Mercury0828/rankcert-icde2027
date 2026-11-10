@@ -1,7 +1,7 @@
 """Numbers for paper section 6 (after A6-FREEZE, derisk/A6_FREEZE.json).
 
 python -m derisk.a6_paper_numbers
-(1) Tab-A6: held-out rows (D:/runs/rankcert/a6/heldout/), success rule of derisk/BENCH_A6_PREREG.md section 5 for the frozen
+(1) Tab-A6: held-out rows (./data/a6/heldout/), success rule of the benchmark protocol section 5 for the frozen
     R-PAIR-S6 and for R-CP, against BL1; per instance best (N, IN, OUT, reps) and the per-N means of every method.
 (2) Tab-Abl: development rows at N = 1e5, mean top-10 IN / OUT share per family for BL1, R-CP, R-PAIR, R-PAIR-S, R-PAIR6,
     R-PAIR-S6 (instances where all six are present with >= 10 repeats).
@@ -18,7 +18,7 @@ import os
 from derisk.a6_dev_summary import BMAX, shares
 from derisk.cov_summary import QUERIES, upper95
 
-A6 = 'D:/runs/rankcert/a6'
+A6 = './data/a6'
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'results', 'a6', 'paper_numbers.json')
 
 

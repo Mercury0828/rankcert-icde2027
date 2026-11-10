@@ -1,7 +1,7 @@
 """D1 (decisiveness) and the D2 coverage loop share this runner.
 
 python -m derisk.d1_run <circuit> --Ns 1000,10000,100000,1000000 --reps 30 --tag d1 [--methods R-H,R-CP,BL1-H,BL1-DKW]
-Rows are appended to D:/runs/rankcert/phase0/<tag>/<circuit>.jsonl; a restart skips (circuit, N, delta, method, rep)
+Rows are appended to ./data/phase0/<tag>/<circuit>.jsonl; a restart skips (circuit, N, delta, method, rep)
 units already present (checkpoint = the jsonl itself, flushed + fsynced after every unit; atomic per line).
 """
 from __future__ import annotations
@@ -20,7 +20,7 @@ from rankcert.propagate.interval import dense_bounds, dense_point, factor_interv
 from rankcert.regions.regions import REGIONS
 from stats.labels import evaluate, threshold_labels, threshold_truth, topk_labels, topk_truth
 
-RUN = os.environ.get('RANKCERT_RUN', 'D:/runs/rankcert/phase0')
+RUN = os.environ.get('RANKCERT_RUN', './data/phase0')
 CIRCUIT_ID = {'qaoa20': 1, 'qaoa24': 2, 'adder16': 3, 'ghz20': 4, 'qaoa32': 5, 'qaoa40': 6}
 KS = (5, 10)
 TAUS = (0.01, 0.05)
@@ -69,7 +69,7 @@ def run(name, Ns, reps, tag, methods, delta=0.05, detail_reps=1, suffix='', rep_
     path = os.path.join(out_dir, name + suffix + '.jsonl')
     done = set()
     if os.path.exists(path):
-        # torn last line (interrupted write): truncate it so the recomputed row starts on a fresh line (review)
+        # torn last line (interrupted write): truncate it so the recomputed row starts on a fresh line
         with open(path, 'rb+') as fb:
             data = fb.read()
             if data and not data.endswith(b'\n'):

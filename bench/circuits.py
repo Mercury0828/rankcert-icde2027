@@ -1,7 +1,7 @@
-"""Benchmark circuits for Phase 0 (guide §7a D1). Every builder returns the circuit twice: with QCut cut markers on the
+"""Benchmark circuits for initial. Every builder returns the circuit twice: with QCut cut markers on the
 declared cut gates (`cut=True`) and with the plain gates (`cut=False`, for the uncut exact reference).
 
-Graphs for QAOA are built so that the declared cuts separate them (guide §7a D1):
+Graphs for QAOA are built so that the declared cuts separate them:
   (i)  two random 3-regular graphs on n/2 vertices, one edge removed in each, one bridge edge between the two freed
        vertex pairs' endpoints -> exactly one crossing edge -> one gate cut;
   (ii) two random 3-regular graphs on n/2 vertices joined by a double-edge swap (remove (a,b) in cluster A and (c,d) in

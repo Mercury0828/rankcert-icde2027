@@ -1,4 +1,4 @@
-"""Appended shots (rankcert/certify/seq.py, derisk/seq_note.md): allocation weights equal brute-force influence
+"""Appended shots: allocation weights equal brute-force influence
 variances; the total-level argument of certify reproduces the registered split; sequential runs issue no wrong or
 conflicting labels and account the shots."""
 import os
@@ -12,8 +12,8 @@ from rankcert.certify.seq import neyman_safeguarded, pair_weights, run, varmin_w
 from rankcert.propagate.interval import dense_point, to_block_order
 from stats.labels import topk_truth
 
-ARITH = 'D:/runs/rankcert/a6/ref/arith16_s1001.pkl'
-BV = 'D:/runs/rankcert/a6/ref/bv16_s1001.pkl'
+ARITH = './data/a6/ref/arith16_s1001.pkl'
+BV = './data/a6/ref/bv16_s1001.pkl'
 
 
 def _load(path):

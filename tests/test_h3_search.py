@@ -14,7 +14,7 @@ from rankcert.propagate.interval import dense_bounds, dense_point, factor_interv
 from rankcert.regions.regions import CPRegion
 from stats.labels import evaluate, topk_truth
 
-REF = 'D:/runs/rankcert/a6/ref/qaoa2_20_s1001.pkl'
+REF = './data/a6/ref/qaoa2_20_s1001.pkl'
 
 
 @pytest.fixture(scope='module')

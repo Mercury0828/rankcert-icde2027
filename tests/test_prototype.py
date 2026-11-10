@@ -1,4 +1,4 @@
-"""Property tests for the Phase-0 prototype (regions, propagation, labels)."""
+"""Property tests for the initial prototype (regions, propagation, labels)."""
 import numpy as np
 import pytest
 from scipy.optimize import linprog

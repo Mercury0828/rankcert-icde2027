@@ -1,6 +1,6 @@
 """Cut model: the separable affine form of a QCut (2.4.0) reconstruction, built from the experiment metadata.
 
-Notation follows guide §P4. For every group g and subcircuit i the factor weight is a signed linear functional of the raw
+Notation follows the method description For every group g and subcircuit i the factor weight is a signed linear functional of the raw
 category distribution q_e of the subexperiment e = e(i, g) that QCut actually ran (after deduplication):
 
     u_{i,g}(y) = sum_{z in Z_e} [out_i(z) = y] * sign(z) * q_e(z)

@@ -1,4 +1,4 @@
-"""Sparse-path outward rounding (review; rpair module docstring): sparse decisions are a subset of dense
+"""Sparse-path outward rounding: sparse decisions are a subset of dense
 decisions (a sparse IN / OUT is always the dense label; the sparse path may only add UND), on a reviewer's exact-tie repro and
 on random small cut models with thresholds placed exactly at dense interval endpoints. The A6 equality (no decision lost
 by the margin) is tests/test_rpair_sparse.py::test_sparse_equals_dense."""

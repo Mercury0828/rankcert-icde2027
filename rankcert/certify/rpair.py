@@ -1,4 +1,4 @@
-"""R-PAIR certification (C1-region T1–T3, rounds/C1-region_R4_response.md) usable with or without the dense 2^m vector.
+"""R-PAIR certification usable with or without the dense 2^m vector.
 
 certify(model, pilot, counts, ks, mode) -> per query k a label answer {cand, cand_labels, rest}: strings in `cand` carry
 the listed labels, every other string carries the label `rest` (OUT, or UND after the empty-interval fallback).
@@ -23,7 +23,7 @@ factor-radius LPs of one subexperiment (_tighten_points / _lpmax_rows: same gree
 H3 widths, checks the full-functional sign identity on one period of the QPD bits (Subexperiment.signs is periodic in
 z mod 2^written by construction; the full-length identity is asserted in tests/test_h3_speed.py).
 
-Sparse vs dense rounding (review). The two paths compute the same mathematical bounds with different floating
+Sparse vs dense rounding. The two paths compute the same mathematical bounds with different floating
 summation orders (short support dots and pooled sums vs dots, sums and cumulative sums over all |Z_e| cells), so a decision
 taken at an exact tie can differ. The sparse path therefore rounds outward: next to every score radius E, pair radius and
 factor radius it carries a bound Delta >= |sparse value - dense value| and decides with E + Delta (+ the score bound
@@ -44,7 +44,7 @@ conservatively) with N = max_e |Z_e| + 64 for every long sum of either path:
 Second-order terms are O(gamma_N^2) <= 1e-18 relative and are covered by the factor-2 / factor-16 slack. Because every
 label rule is monotone (wider intervals and fewer certificates never add an IN or OUT, and a wider empty test only moves
 to UND everywhere), the sparse labels are the dense labels except decisions within the outward-rounding margin, which are
-dropped (UND): sparse decisions are a subset of dense decisions (tested on synthetic exact ties, review, A6 refs).
+dropped (UND): sparse decisions are a subset of dense decisions.
 """
 from __future__ import annotations
 
@@ -58,7 +58,7 @@ from rankcert.search.bitbnb import BitSearcher, FrontierCap
 
 D0, DS, DP = 0.005, 0.005, 0.04
 NA = 32
-# Repair 6 (variant 'r6', derisk/repair6_note.md): pilot-selected set of NA6 strings; delta split region / scores / pairs /
+# Repair 6: pilot-selected set of NA6 strings; delta split region / scores / pairs /
 # factor functionals; factor radii min(CP, functional Bernstein); variance envelope = LP over the region; bilinear remainder
 # of two-factor products bounded by Bernstein conditional on the other side's samples (min with the deterministic bound).
 NA6 = 128
@@ -179,7 +179,7 @@ def check_structure(model):
 
 
 def select_pilot(model, pilot, mode, na=NA):
-    na = min(na, 1 << model.m)                     # tiny output spaces (review)
+    na = min(na, 1 << model.m)                     # tiny output spaces
     qp = [v / v.sum() for v in pilot]
     fi = factor_intervals(model, PointRegion(qp))
     if mode == 'dense':
@@ -692,9 +692,8 @@ COLLECTS = ('r4', 'tight')
 
 def certify(model, pilot, counts, ks=(5, 10), mode='search', selected=None, taus=(0.01, 0.05), cap=AUTO_CAP,
             variant='r4', delta=None, sparse=None, collect='r4'):
-    """variant 'r4': C1-region R4 construction (A6 methods R-PAIR / R-PAIR-S); 'r6': repair 6 (derisk/repair6_note.md).
-    delta: total level (default None = the registered 0.05 split); otherwise every share is scaled by delta / 0.05
-    (sequential rounds, derisk/seq_note.md).
+    """variant 'r4': C1-region R4 construction (A6 methods R-PAIR / R-PAIR-S); 'r6': repair 6.
+    delta: total level (default None = the registered 0.05 split); otherwise every share is scaled by delta / 0.05.
     sparse: None = auto (sparse functional path iff max_e |Z_e| > SPARSE_AUTO), True / False forced (module docstring).
 
     collect (search / auto modes; labels are the enumeration labels either way, only the collected set differs):

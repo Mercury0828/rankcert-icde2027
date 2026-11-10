@@ -1,7 +1,7 @@
-"""A6 development summary for the A6-FREEZE choice (derisk/BENCH_A6_PREREG.md §5 rule, applied to development seeds).
+"""A6 development summary for the A6-FREEZE choice.
 
 python -m derisk.a6_dev_summary [--reps-min 10]
-Reads D:/runs/rankcert/a6/runs/ and runs6/ (development rows only; held-out rows are never read). For every candidate
+Reads ./data/a6/runs/ and runs6/ (development rows only; held-out rows are never read). For every candidate
 method (R-PAIR, R-PAIR-S, R-PAIR6, R-PAIR-S6) and instance: instance success = at some N with S*N <= 1e7, mean top-10 IN
 share >= 0.50, mean OUT share >= 0.999, and the Q2 condition against BL1 at the same N (IN >= 2x BL1's; if BL1's IN share is
 0 at every admissible N, IN > 0 - reported as "BL1 = 0"; the "same IN with >= 4x fewer shots" clause is also checked).
@@ -15,7 +15,7 @@ import glob
 import json
 import os
 
-A6 = 'D:/runs/rankcert/a6'
+A6 = './data/a6'
 CANDIDATES = ('R-PAIR', 'R-PAIR-S', 'R-PAIR6', 'R-PAIR-S6')
 BMAX = 1e7
 

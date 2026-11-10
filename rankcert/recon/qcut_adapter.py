@@ -17,7 +17,7 @@ from .model import CutModel, Subexperiment, Use
 
 
 def circuit_key(qc) -> tuple:
-    """(Superseded, kept for reference: name/parameter keys miss custom-operation definitions — review.)"""
+    """"""
     items = []
     for inst in qc.data:
         op = inst.operation

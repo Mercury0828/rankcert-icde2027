@@ -11,7 +11,7 @@ from rankcert.certify.rpair import _Terms
 from rankcert.recon.model import CutModel, Subexperiment, Use
 from rankcert.regions.regions import CPRegion, clopper_pearson, unique_inverse
 
-A6 = 'D:/runs/rankcert/a6/ref/'
+A6 = './data/a6/ref/'
 
 
 def _same_unique(v):
@@ -104,7 +104,7 @@ def test_cp_scalar_cache_and_sign_identity(name, N):
     mass calls, repeated); every use's signs equal (-1)^dropped s_e over the full Z_e (the sparse path checks one
     period)."""
     from rankcert.certify.rpair import _SignPool
-    path = ('D:/runs/rankcert/h3/ref/' + name[3:] if name.startswith('H3:') else A6 + name) + '.pkl'
+    path = ('./data/h3/ref/' + name[3:] if name.startswith('H3:') else A6 + name) + '.pkl'
     if not os.path.exists(path):
         pytest.skip('reference not built')
     ref = pickle.load(open(path, 'rb'))

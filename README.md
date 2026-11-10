@@ -1,45 +1,55 @@
 # Ranking Queries with Confidence Guarantees over Quantum Circuit-Cutting Reconstructions: code and data
 
-This archive accompanies the IEEE ICDE 2027 submission of the same title by Jiachen Shen (University of Houston) and
-Hui Zhong (Miami University). It contains the implementation, the benchmark generator, the evaluation scripts, the
-result rows behind every number of the paper, and the extended version with the full proofs (`extended_version.pdf`).
+Code, result rows and extended version (full proofs and experimental configuration, `extended_version.pdf`) for the
+IEEE ICDE 2027 submission by Jiachen Shen (University of Houston) and Hui Zhong (Miami University).
+Archived on Zenodo: https://doi.org/10.5281/zenodo.24120178
 
-## Contents
+## Layout
 
 - `rankcert/`: the method. Confidence regions on raw measurement categories (`regions/`), interval propagation
-  (`propagate/`), refined score and pair bounds with the pilot, allocation and labelling (`certify/rpair.py`), and the
-  branch-and-bound searches (`search/`).
-- `baselines/`: BL1 (uniform Hoeffding / DKW bound).
-- `bench/`: generation of the benchmark circuits (adder, QAOA, Bernstein-Vazirani) and their exact reference
-  distributions; `bench/a6.py` lists every instance with its split (development or held-out).
-- `stats/`: label evaluation against the exact answer (sure members, sure non-members, wrong labels).
-- `derisk/a6_run.py`: the evaluation runner (all methods, equal total shots, seeded draws).
-  `derisk/run_a6_heldout.sh` runs the held-out evaluation. `derisk/h3_search.py` runs the search beyond enumeration.
-- `derisk/a6_paper_numbers.py` and `derisk/a6_paper_tables.py`: compute every table and number of Section VI from the
-  rows; `derisk/a6_fig1.py`, `figs/fig1.py` and `figs/fig_shots.py` produce the figures.
-- `rows/`: the result rows (JSON lines, one row per instance, budget, repetition and method) for the development
-  instances, the held-out instances and the search runs. `derisk/results/a6/` holds the generated summaries.
-- `derisk/A6_FREEZE.json`: the record of the method and parameters frozen on the development instances before the
+  (`propagate/interval.py`), refined score and pair bounds, pilot selection, allocation and labelling
+  (`certify/rpair.py`), appended-shot rounds (`certify/seq.py`), and the branch-and-bound searches (`search/`).
+- `baselines/bl1.py`: BL1 (uniform Hoeffding / DKW bound).
+- `bench/`: benchmark circuits (adder, QAOA, Bernstein-Vazirani) and their exact reference distributions;
+  `bench/a6.py` lists every instance with its split (development seeds 1001-1005, held-out seeds 1006-1010).
+- `stats/labels.py`: label evaluation against the exact answer (sure members, sure non-members, wrong labels).
+- `derisk/`: evaluation runners and the scripts that turn rows into the paper's tables and figures.
+- `data/`: the result rows used in the paper (JSON lines, one row per instance, budget, repetition and method):
+  `data/a6/runs` and `data/a6/runs6` (development), `data/a6/heldout` (held-out), `data/h3/check_rows_tight.jsonl`
+  (search beyond enumeration). `derisk/results/a6/` holds the generated summaries.
+- `derisk/A6_FREEZE.json`: the method, parameters and code version frozen on the development instances before the
   held-out instances were evaluated.
-- `tests/`: unit tests (`python -m pytest tests`).
 
-## Requirements
+## Environment
 
-Python 3.11, NumPy 2.4, SciPy 1.17, Matplotlib 3.11, pytest, and the circuit-cutting library QCut 2.4.0
-(https://github.com/FiQCI/QCut/releases/tag/v2.4.0) with Qiskit; Qiskit Aer only for `derisk/a6_validate.py`.
-All runs in the paper used one thread of an Intel Core i9-13900K with 64 GB of memory.
+Python 3.11 with the packages in `requirements.txt`, plus QCut 2.4.0
+(`pip install git+https://github.com/FiQCI/QCut@v2.4.0`). Run every command from the repository root with
+`PYTHONPATH=.` and one thread (`OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1`).
+The paper's runs used one thread of an Intel Core i9-13900K with 64 GB of memory.
 
-## Reproducing the paper
+## Paper item -> how it is produced
 
-1. Generate the reference distributions of the benchmark: see `bench/a6.py` (writes the instances under the directory
-   configured as `A6` in that file).
-2. Run the evaluation: `python -m derisk.a6_run <instance> --Ns 1000,10000,100000,1000000 --reps 0-9
-   --methods R-CP,BL1,R-PAIR,R-PAIR-S,R-PAIR6,R-PAIR-S6` for development instances, and
-   `bash derisk/run_a6_heldout.sh <shard> <instance ...>` for held-out instances. The paper's own rows are in `rows/`.
-3. Regenerate the numbers and tables: `python -m derisk.a6_paper_numbers` then `python -m derisk.a6_paper_tables`
-   (both read the rows from the `A6` directory; copy `rows/` there or point `A6` at it).
-4. Figures: `python -m derisk.a6_fig1`, `python figs/fig1.py`, `python figs/fig_shots.py`.
+| Paper item | Command | Output |
+|---|---|---|
+| Tables II, III, IV and the numbers in the text | `python -m derisk.a6_paper_numbers` then `python -m derisk.a6_paper_tables` | `derisk/results/a6/paper_numbers.json`, `paper/tables/{cov,a6,abl,search,numbers}.tex` |
+| Table V (search) | rows in `data/h3/`; same two commands | `paper/tables/search.tex` |
+| Figure 1 and Examples 1-3 | `python -m derisk.a6_fig1` then `python figs/fig1.py` | `derisk/results/a6/fig1.json`, `figs/fig1.pdf` |
+| Figure 2 | `python figs/fig_shots.py` (reads `paper_numbers.json`) | `figs/fig_shots.pdf` |
+| Table I | descriptive; the sizes come from the instances listed in `bench/a6.py` | |
+| Simulator check of the references (Section VI-A) | `python -m derisk.a6_validate <instance>` | `derisk/results/a6/validation.json` |
 
-## License
+The table scripts read the rows from `data/` and write LaTeX into `paper/tables/` (created if absent).
 
-To be set by the authors on the Zenodo record.
+## Re-running the experiments
+
+1. Build the exact reference distributions of an instance (`bench/a6.py`, written under `data/a6/ref` and
+   `data/a6/embargo` for held-out seeds).
+2. Development instances: `python -m derisk.a6_run <instance> --Ns 1000,10000,100000,1000000 --reps 0-9
+   --methods R-CP,BL1,R-PAIR,R-PAIR-S,R-PAIR6,R-PAIR-S6`. Held-out instances (N = 1e5, reps 0-9):
+   `bash derisk/run_a6_heldout.sh <shard> <instance ...>`.
+3. Search beyond enumeration: `python -m derisk.h3_search` (see its docstring for the grid m in {32, 36, 40}).
+Draws are seeded per (family, m, seed, N, repetition, stream), so reruns reproduce the rows.
+
+## Tests
+
+`python -m pytest tests`. Tests that need reference distributions skip when `data/a6/ref` has not been built.

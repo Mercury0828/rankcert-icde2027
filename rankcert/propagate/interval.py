@@ -1,4 +1,4 @@
-"""Naive interval propagation through the separable affine form (guide §P4.1, §P5.2 T2 ROUTE; Phase-0 prototype).
+"""Naive interval propagation through the separable affine form.
 
     p(x) = c0 - sum_g s_g prod_b u_{g,b}(x_b),   c0 = (1 + sum_g s_g prod_b S_{g,b}) / 2^m,
     s_g = parity * c_g * prod_{subcircuits without held bits} E_{g,i},   S_{g,b} = sum_y u_{g,b}(y).

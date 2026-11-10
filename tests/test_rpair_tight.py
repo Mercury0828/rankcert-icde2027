@@ -15,7 +15,7 @@ from rankcert.propagate.interval import factor_intervals
 from rankcert.regions.regions import CPRegion
 from rankcert.search.bitbnb import BitSearcher
 
-A6 = 'D:/runs/rankcert/a6/ref/'
+A6 = './data/a6/ref/'
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ORACLE = 'd22097e'      # reviewed pre-change rpair.py (before the sparse / tight work): default-behaviour oracle
 GRID = [('arith16_s1001', 10 ** 3), ('arith16_s1001', 10 ** 4), ('arith16_s1001', 10 ** 5),

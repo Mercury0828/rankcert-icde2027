@@ -1,4 +1,4 @@
-"""Kill -> restart -> resume test for the D1/D2 runner (guide §P6.5): a torn last line is truncated, finished units are
+"""Kill -> restart -> resume test for the D1/D2 runner: a torn last line is truncated, finished units are
 skipped, the unfinished unit is recomputed with the same seeds, and the resumed file equals an uninterrupted run."""
 import json, os, shutil, tempfile
 import pytest
@@ -11,13 +11,13 @@ def _rows(p):
 
 
 def test_kill_restart_resume(monkeypatch):
-    if not os.path.exists('D:/runs/rankcert/phase0/ref/ghz20.pkl'):
+    if not os.path.exists('./data/phase0/ref/ghz20.pkl'):
         pytest.skip('instance not built')
-    tmp = tempfile.mkdtemp(dir='D:/runs/rankcert')
+    tmp = tempfile.mkdtemp(dir='./data')
     # build an uninterrupted reference
     monkeypatch.setattr(D, 'RUN', tmp)
     os.makedirs(os.path.join(tmp, 'ref'))
-    shutil.copy('D:/runs/rankcert/phase0/ref/ghz20.pkl', os.path.join(tmp, 'ref', 'ghz20.pkl'))
+    shutil.copy('./data/phase0/ref/ghz20.pkl', os.path.join(tmp, 'ref', 'ghz20.pkl'))
     D.run('ghz20', [1000], 3, 'full', ['R-CP', 'BL1-H'])
     full = _rows(os.path.join(tmp, 'full', 'ghz20.jsonl'))
     # simulate a kill: keep 3 complete rows and a torn fourth line

@@ -1,9 +1,9 @@
-"""A6 peaked benchmark family: deterministic builders, parameter table, manifests (derisk/BENCH_A6_PREREG.md v2).
+"""A6 peaked benchmark family: deterministic builders, parameter table, manifests.
 
 python -m bench.a6 list                      -> the instance table (no building)
 python -m bench.a6 build <name> [<name> ...] -> exact references + manifests
 Development seeds 1001-1005, held-out 1006-1010. Held-out exact distributions and descriptors are written only to the
-embargo directory D:/runs/rankcert/a6/embargo/ (never to the repository) until the A6-FREEZE commit exists.
+embargo directory ./data/a6/embargo/ (never to the repository) until the A6-FREEZE commit exists.
 """
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ from bench.build import strip, sure_counts
 from bench.exact import exact_category_distribution, uncut_distribution
 from rankcert.recon.qcut_adapter import build_model, exact_options
 
-A6 = os.environ.get('RANKCERT_A6', 'D:/runs/rankcert/a6')
+A6 = os.environ.get('RANKCERT_A6', './data/a6')
 RES = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'derisk', 'results', 'a6')
 FAMILY_ID = {'arith': 1, 'qaoa2': 2, 'bv': 3}
 DEV = tuple(range(1001, 1006))

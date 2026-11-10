@@ -1,4 +1,4 @@
-"""H3 / F-Search (guide §P6 "Q3 Search cost (H3)"): cost of the R-PAIR6 label computation at output widths where 2^m
+"""H3 / F-Search (the method description "Q3 Search cost (H3)"): cost of the R-PAIR6 label computation at output widths where 2^m
 enumeration is infeasible, against (a) full enumeration and (b) QCut's uncertified exact `top()` on the plug-in estimate.
 
 python -m derisk.h3_search --ms 24,28,32,36,40 --seeds 2001-2003 --N 100000 [--reps 0] [--build-only]
@@ -16,7 +16,7 @@ instances are named *_smoke and live in a separate directory.
 Stage 1 (untimed, resumable; skipped when the pickle exists): circuit, QCut cut experiment, CutModel, the exact category
 distribution q_e of every distinct subexperiment (bench.exact: one statevector of n/2 + (QPD mid-circuit bits) qubits per
 subexperiment, never the 2^m vector), and an exact top-k reference computed by the bit-level search on the exact point
-factors (L = U = p; no dense p). Written to D:/runs/rankcert/h3/ref/<name>.pkl (+ manifest json) -- never to the repo.
+factors (L = U = p; no dense p). Written to ./data/h3/ref/<name>.pkl (+ manifest json) -- never to the repo.
 At m <= 24 the reference is also checked against the uncut statevector (A6 integrity check).
 
 Stage 2 (timed, rows resumable by key (instance, N, rep, method)): pilot N//20 per subexperiment (stream 41) and uniform
@@ -41,7 +41,7 @@ inference counts N per subexperiment (stream 42), SeedSequence([family_id, m, se
         of 2^--enum-chunk-log2 strings of the same instance, times 2^m -> 'extrapolated_seconds' (EXTRAPOLATED, linear: the
         sort in the label pass is n log n, so this underestimates enumeration); memory = chunk peak bytes per string x 2^m;
         'extrapolated_total_seconds' adds our certify's non-search time (regions, radii, pairs), which enumeration pays too.
-Every row carries the git commit (derisk.d1_run.git_head). Rows -> D:/runs/rankcert/h3/rows.jsonl.
+Every row carries the git commit (derisk.d1_run.git_head). Rows -> ./data/h3/rows.jsonl.
 Single-threaded BLAS is set unless the caller set it (timings comparable across methods).
 """
 from __future__ import annotations
@@ -61,7 +61,7 @@ import time
 
 import numpy as np
 
-H3 = os.environ.get('RANKCERT_H3', 'D:/runs/rankcert/h3')
+H3 = os.environ.get('RANKCERT_H3', './data/h3')
 K = 10
 FAMILY = 'qaoa2'
 

@@ -1,8 +1,8 @@
 """Write the LaTeX tables and number macros of paper section 6 from the result rows (no hand-typed numbers).
 
 python -m derisk.a6_paper_tables
-Inputs: derisk/results/a6/paper_numbers.json (python -m derisk.a6_paper_numbers), D:/runs/rankcert/h3/check_rows_tight.jsonl,
-held-out rows D:/runs/rankcert/a6/heldout/. Outputs: paper/tables/{cov,a6,abl,search}.tex and paper/tables/numbers.tex.
+Inputs: derisk/results/a6/paper_numbers.json (python -m derisk.a6_paper_numbers), ./data/h3/check_rows_tight.jsonl,
+held-out rows ./data/a6/heldout/. Outputs: paper/tables/{cov,a6,abl,search}.tex and paper/tables/numbers.tex.
 """
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NUM = os.path.join(ROOT, 'derisk', 'results', 'a6', 'paper_numbers.json')
-H3 = 'D:/runs/rankcert/h3/check_rows_tight.jsonl'
+H3 = './data/h3/check_rows_tight.jsonl'
 OUT = os.path.join(ROOT, 'paper', 'tables')
 FAM = {'arith': 'Arithmetic', 'qaoa2': 'QAOA', 'bv': 'BV'}
 SIZE = {'arith16': 'Adder, $m = 16$', 'arith20': 'Adder, $m = 20$', 'arith24': 'Adder, $m = 24$',

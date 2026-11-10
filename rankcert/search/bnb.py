@@ -1,5 +1,4 @@
-"""Phase-0 branch-and-bound search on interval endpoints (guide §P5.2 T4 ROUTE; QCut's _Search idea on interval
-endpoints, credited). Block-level branching: the first s-1 blocks are fixed one at a time (children of a node are all
+"""initial branch-and-bound search on interval endpoints. Block-level branching: the first s-1 blocks are fixed one at a time (children of a node are all
 values of the next block, ordered by bound); the last block is evaluated as a vector ("leaf").
 
 Bounds for a branch B fixing blocks 0..j-1: each group term interval is s_g * prod_{b<j} [u_gb(x_b)] * prod_{b>=j} H_gb
@@ -48,8 +47,7 @@ class Searcher:
 
     # ---- bounds for the children of a node (prefix fixes blocks 0..j-1; children = all values of block j)
     # Arithmetic order mirrors rankcert.propagate.interval.dense_bounds exactly (block products left to right, the
-    # coefficient s_g last, groups summed in order), so leaf values are bit-identical to enumeration (review
-    # FATAL-1). Branch bounds carry an outward rounding margin so that a branch is never pruned because of rounding.
+    # coefficient s_g last, groups summed in order), so leaf values are bit-identical to enumeration. Branch bounds carry an outward rounding margin so that a branch is never pruned because of rounding.
     def child_bounds(self, prefix_iv: list, j: int):
         """prefix_iv[g] = (lo, hi) interval of prod_{b<j} u_gb(x_b) (None at the root). Returns (U_bar, L_bar, child)."""
         tot_lo = None

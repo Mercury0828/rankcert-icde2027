@@ -12,7 +12,7 @@ from rankcert.certify.rpair import (D0, D0_6, DR_6, NA, NA6, SPARSE_AUTO, _lpmax
 from rankcert.propagate.interval import factor_intervals
 from rankcert.regions.regions import CPRegion
 
-A6 = 'D:/runs/rankcert/a6/ref/'
+A6 = './data/a6/ref/'
 REFS = [('arith16_s1001', 10 ** 4), ('bv16_s1001', 10 ** 3), ('qaoa2_20_s1001', 10 ** 5), ('qaoa2_24_s1001', 10 ** 5)]
 _cache = {}
 

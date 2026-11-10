@@ -1,5 +1,4 @@
-"""BL1 — uniform bound + the same three-valued rules (guide §P6.3; G7's approach, stated as a corrected, explicitly
-simultaneous bound for the cut estimator's product structure). Never attributed to Neumann et al. as written.
+"""BL1 — uniform bound + the same three-valued rules. Never attributed to Neumann et al. as written.
 
 Both variants give ONE half-width Delta for every string x around the plug-in estimate p_hat(x):
   every factor value (point rows u_{g,b}(y) and mass rows S_{g,b}, scalar rows E) deviates by at most eps from its

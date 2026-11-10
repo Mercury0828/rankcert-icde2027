@@ -1,11 +1,11 @@
-"""D1 repair attempt 5 (pre-registered in derisk/PREREG.md, appendix "repair attempt 5"): R-PAIR-S = R-PAIR-N with the
-uniform-allocation safeguard of C1-region R4 (rounds/C1-region_R4_response.md, part (b), eq. (23)): reserve
+"""D1 repair attempt 5: R-PAIR-S = R-PAIR-N with the
+uniform-allocation safeguard of C1-region R4 (the method description, part (b), eq. (23)): reserve
 b_e = ceil(BETA * U_e) for every subexperiment (U_e = balanced uniform split of the inference budget), distribute the rest
 by the pilot Neyman weights w_e = sqrt(a_e) / sum_j sqrt(a_j) (floor + largest remainder, ties by index).
 BETA = 1/2. Everything else (pilot, draws, inference, labels) is repair 4 unchanged (derisk/repair4_run.py).
 
 python -m derisk.repair5_run <circuit> --Ns ... --reps a-b
-Rows -> D:/runs/rankcert/phase0/repair5/<circuit>.jsonl (resumable).
+Rows -> ./data/phase0/repair5/<circuit>.jsonl (resumable).
 """
 from __future__ import annotations
 

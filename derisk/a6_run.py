@@ -1,20 +1,18 @@
-"""A6 evaluation runner (derisk/BENCH_A6_PREREG.md v2).
+"""A6 evaluation runner.
 
 python -m derisk.a6_run <instance> [<instance> ...] --Ns 1000,10000,100000,1000000 --reps 0-29
-Rows -> D:/runs/rankcert/a6/runs/<instance>.jsonl (resumable; key (N, rep, method)).
+Rows -> ./data/a6/runs/<instance>.jsonl (resumable; key (N, rep, method)).
 Held-out instances (seeds 1006-1010) are refused unless the A6-FREEZE marker file derisk/A6_FREEZE.json exists (it is
 written by the freeze commit and names the frozen methods by commit hash).
 
 Methods at a common total budget B = S * N:
-  R-CP     uniform N per subexperiment (stream 0), CP region delta = 0.05, interval propagation, Phase-0 labels
-  BL6      = R-CP labels; its search cost is the Phase-0 QCut-style block search (rankcert/search/bnb.py), timed on rep 0
+  R-CP     uniform N per subexperiment (stream 0), CP region delta = 0.05, interval propagation, initial labels
+  BL6      = R-CP labels; its search cost is the initial QCut-style block search (rankcert/search/bnb.py), timed on rep 0
   BL1      stronger of BL1-H / BL1-DKW per unit (both recorded), stream 0 draws
   R-PAIR   pilot N//20 per e (stream 41), uniform inference (stream 42), rankcert.certify.rpair (mode 'auto': search,
          dense fallback when the collection exceeds AUTO_CAP; labels identical in all modes, tests/test_rpair_modes.py)
   R-PAIR-S same pilot, safeguarded allocation (beta = 1/2, derisk/repair5_run.py), inference stream 42, mode 'auto'
-  R-PAIR6 / R-PAIR-S6  the same with certify variant 'r6' (repair 6, derisk/repair6_note.md: |A| = 128 from the same
-         pilot; the allocation still uses the top-32 pilot strings, so R-PAIR-S6 draws the same inference counts as
-         R-PAIR-S). Opt-in: --methods (default: the four registered methods).
+  R-PAIR6 / R-PAIR-S6  the same with certify variant 'r6'. Opt-in: --methods (default: the four registered methods).
 Seeds: SeedSequence([family_id, m, instance_seed, N, rep, 20261107, stream]).
 """
 from __future__ import annotations
@@ -68,7 +66,7 @@ PAIR_METHODS = ('R-PAIR', 'R-PAIR-S', 'R-PAIR6', 'R-PAIR-S6')
 def run(name, Ns, reps, want=BASE_METHODS, sub='runs'):
     row, ref = load_instance(name)
     model, qs = ref['model'], ref['qs']
-    p = to_block_order(model, ref['p'])            # labels are in block order (review)
+    p = to_block_order(model, ref['p'])            # labels are in block order
     S, m = len(qs), model.m
     M = 1 << m
     truths = {'top%d' % k: topk_truth(p, k) for k in KS}

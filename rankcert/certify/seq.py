@@ -1,4 +1,4 @@
-"""Appended shots (derisk/seq_note.md, T5–T6): rounds with fresh batches, adaptive allocation, labels valid at every
+"""Appended shots: rounds with fresh batches, adaptive allocation, labels valid at every
 round on one event of probability >= 1 - delta.
 
 Round 0 is the pilot. Round t >= 1 draws a fresh batch of b_t = S * N1 * 2^(t-1) shots split over the subexperiments by

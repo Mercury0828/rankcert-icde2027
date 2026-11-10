@@ -21,7 +21,7 @@ import os
 
 from scipy.stats import beta
 
-A6 = 'D:/runs/rankcert/a6'
+A6 = './data/a6'
 QUERIES = ('top5', 'top10', 'tau0.01', 'tau0.05')
 
 

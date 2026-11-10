@@ -1,4 +1,4 @@
-"""Repair 6 (certify variant 'r6', derisk/repair6_note.md): search = dense labels; the LP envelope is the exact LP optimum;
+"""Repair 6: search = dense labels; the LP envelope is the exact LP optimum;
 the bilinear-remainder and factor-radius bounds hold on Monte Carlo draws; the default variant is unchanged."""
 import os
 import pickle
@@ -10,8 +10,8 @@ from rankcert.certify.rpair import _lpmax, _Terms, certify, expand, select_pilot
 from rankcert.propagate.interval import factor_intervals
 from rankcert.regions.regions import CPRegion
 
-REFS = [('D:/runs/rankcert/phase0/ref/adder16.pkl', 10 ** 4), ('D:/runs/rankcert/a6/ref/arith16_s1001.pkl', 10 ** 4),
-        ('D:/runs/rankcert/a6/ref/bv16_s1001.pkl', 10 ** 3), ('D:/runs/rankcert/a6/ref/qaoa2_20_s1001.pkl', 10 ** 5)]
+REFS = [('./data/phase0/ref/adder16.pkl', 10 ** 4), ('./data/a6/ref/arith16_s1001.pkl', 10 ** 4),
+        ('./data/a6/ref/bv16_s1001.pkl', 10 ** 3), ('./data/a6/ref/qaoa2_20_s1001.pkl', 10 ** 5)]
 
 
 def _load(path):

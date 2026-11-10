@@ -7,9 +7,9 @@ import pytest
 
 from rankcert.certify.rpair import certify, expand
 
-REFS = [('D:/runs/rankcert/phase0/ref/qaoa20.pkl', 10 ** 6), ('D:/runs/rankcert/phase0/ref/adder16.pkl', 10 ** 4),
-        ('D:/runs/rankcert/a6/ref/arith16_s1001.pkl', 10 ** 4), ('D:/runs/rankcert/a6/ref/arith16_s1002.pkl', 10 ** 3),
-        ('D:/runs/rankcert/a6/ref/bv16_s1001.pkl', 10 ** 3), ('D:/runs/rankcert/a6/ref/qaoa2_20_s1001.pkl', 10 ** 5)]
+REFS = [('./data/phase0/ref/qaoa20.pkl', 10 ** 6), ('./data/phase0/ref/adder16.pkl', 10 ** 4),
+        ('./data/a6/ref/arith16_s1001.pkl', 10 ** 4), ('./data/a6/ref/arith16_s1002.pkl', 10 ** 3),
+        ('./data/a6/ref/bv16_s1001.pkl', 10 ** 3), ('./data/a6/ref/qaoa2_20_s1001.pkl', 10 ** 5)]
 
 
 @pytest.mark.parametrize('path,N', REFS)

@@ -1,4 +1,4 @@
-"""Exact references (guide §P6.2): the exact joint distribution q_e over ALL classical bits of a subexperiment circuit
+"""Exact references: the exact joint distribution q_e over ALL classical bits of a subexperiment circuit
 (output bits and every mid-circuit QPD measurement record), and the exact uncut distribution.
 
 Method (noiseless): deferred measurement. A measurement that is not the last operation on its qubit is replaced by a CX

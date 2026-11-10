@@ -1,4 +1,4 @@
-"""The sparse functional path equals the dense path exactly (regions on the real Phase-0 instances)."""
+"""The sparse functional path equals the dense path exactly (regions on the real initial instances)."""
 import os
 import numpy as np
 import pytest
@@ -8,7 +8,7 @@ from rankcert.regions.regions import REGIONS
 
 @pytest.mark.parametrize('name', ['ghz20', 'adder16', 'qaoa20'])
 def test_sparse_equals_dense(name):
-    if not os.path.exists(os.path.join('D:/runs/rankcert/phase0/ref', name + '.pkl')):
+    if not os.path.exists(os.path.join('./data/phase0/ref', name + '.pkl')):
         pytest.skip('instance not built')
     ref = load(name); model, qs = ref['model'], ref['qs']
     n = draw_counts(qs, 3000, CIRCUIT_ID[name], 4242)
@@ -28,7 +28,7 @@ def test_sparse_equals_dense(name):
 
 @pytest.mark.parametrize('name', ['ghz20', 'adder16', 'qaoa20'])
 def test_row_index_matches_dense_matrix(name):
-    if not os.path.exists(os.path.join('D:/runs/rankcert/phase0/ref', name + '.pkl')):
+    if not os.path.exists(os.path.join('./data/phase0/ref', name + '.pkl')):
         pytest.skip('instance not built')
     model = load(name)['model']
     for g in range(model.groups):

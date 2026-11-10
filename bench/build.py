@@ -1,7 +1,7 @@
-"""Build the Phase-0 benchmark instances, their cut models, exact references and manifests.
+"""Build the initial benchmark instances, their cut models, exact references and manifests.
 
 Usage: python -m bench.build <name> [<name> ...]   names: qaoa20 qaoa24 adder16 ghz20 qaoa32 qaoa40
-Writes D:/runs/rankcert/phase0/ref/<name>.npz (exact q_e per distinct subexperiment, exact p if m <= 24) and
+Writes ./data/phase0/ref/<name>.npz (exact q_e per distinct subexperiment, exact p if m <= 24) and
 derisk/results/manifest_<name>.json (circuit + cut manifest and its SHA-256).
 """
 from __future__ import annotations
@@ -19,7 +19,7 @@ from bench import circuits as C
 from bench.exact import exact_category_distribution, uncut_distribution
 from rankcert.recon.qcut_adapter import build_model, exact_options
 
-RUN = os.environ.get('RANKCERT_RUN', 'D:/runs/rankcert/phase0')
+RUN = os.environ.get('RANKCERT_RUN', './data/phase0')
 RES = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'derisk', 'results')
 
 SPECS = {

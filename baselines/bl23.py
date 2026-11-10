@@ -1,6 +1,6 @@
 """BL2 (delta-method normal intervals, ShotQC-style variance propagation, Bonferroni over the candidate set) and BL3
 (percentile max-type bootstrap over the candidate set, B resamples). Neither has a finite-sample guarantee (N1, N11);
-they are evaluated on coverage and decisiveness only (guide §P6.3). Candidate set C = the `n_cand` strings with the
+they are evaluated on coverage and decisiveness only. Candidate set C = the `n_cand` strings with the
 largest plug-in estimates; the §P4.3 rules are applied with C as the universe; strings outside C are UND.
 
 Block-order indexing as in rankcert.propagate.interval. The constant c0 = (1 + sum_g s_g prod_b S_gb) / 2^m is held at its
@@ -39,7 +39,7 @@ def candidate_estimates(model, qhat, cand, with_grad=True):
         for b in range(nb):
             mm *= float(tabs[g][b].sum())
         mass += mm
-        # gradient through every functional of the group: held block rows and scalar-only rows (review)
+        # gradient through every functional of the group: held block rows and scalar-only rows
         for i, use in enumerate(model.uses[g] if with_grad else []):
             if not use.held:
                 rows, signs, R = model.row_index(g, i)

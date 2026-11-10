@@ -1,4 +1,4 @@
-"""A6 integrity check 2 (derisk/BENCH_A6_PREREG.md §2): Aer-sample validation of the exact q_e.
+"""A6 integrity check 2: Aer-sample validation of the exact q_e.
 
 python -m derisk.a6_validate            -> development seeds 1001-1002 of every (family, size) at 1e6 shots / subexperiment
                                            and held-out seed 1006 of every (family, size) at 1e5 shots / subexperiment

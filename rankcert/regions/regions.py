@@ -1,4 +1,4 @@
-"""Phase-0 prototype confidence regions on raw categories (guide §7a D1) and the functional intervals they induce.
+"""initial prototype confidence regions on raw categories and the functional intervals they induce.
 
 Every region method returns, for the counts of all distinct subexperiments, an object with
     interval(e, A) -> (lo, hi)  for a dense functional matrix A (rows = functionals over Z_e),

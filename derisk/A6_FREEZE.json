@@ -1,0 +1,23 @@
+{
+  "marker": "A6-FREEZE",
+  "frozen_utc": "2026-11-10 06:40",
+  "code_commit": "fdc9d9dc1f1f2c52b082b65046b6ec17cd812348",
+  "frozen_method": "R-PAIR-S6",
+  "frozen_method_files": {
+    "rankcert/certify/rpair.py": "c4c16e8 (variant 'r6', NA6 = 128, mode 'auto')",
+    "derisk/a6_run.py": "958d9fa (pilot N//20 per subexperiment, stream 41; inference stream 42)",
+    "derisk/repair5_run.py": "e231e72 (allocate_safeguarded, beta = 1/2, top-32 pilot strings)",
+    "rankcert/search/bitbnb.py": "8f9f58d",
+    "baselines/bl1.py": "eff9fa1",
+    "stats/labels.py": "eff9fa1",
+    "bench/a6.py": "ce0ba59"
+  },
+  "uniform_variant_reported": "R-PAIR6 (same certificate, uniform inference) on development rows only",
+  "baselines": [
+    "BL1 (stronger of H / DKW per unit)",
+    "R-CP (BL6 labels)"
+  ],
+  "selection_basis": "derisk.a6_dev_summary on development seeds 1001-1005, reps 0-9, 2026-11-10 06:20 UTC. R-PAIR-S6: QAOA2 family 10/10 instances succeed; arithmetic 12/12 completed instances succeed (arith24_s1003/s1004/s1005 r6 rows incomplete: an out-of-memory failure on s1003, the rest not yet run). R-PAIR-S: QAOA2 6/10, arithmetic 15/15. R-PAIR-S6 is the only candidate that meets the 60 % bar on both required families on the completed rows.",
+  "deviation_from_prereg": "Owner directive 2026-11-10 06:16 UTC: the paper must be written within 6 hours with the results available. Under the shared-machine CPU lock (1-3 single-thread processes), the held-out evaluation runs reps 0-9 (prereg: 30) at N = 1e5 only first (the only N at which any development instance succeeded; N = 1e6 is not admissible since S*N > 1e7), then N = 1e4 and 1e3 if time remains, in the order arith16, qaoa2_20, arith20, qaoa2_24, arith24. Every held-out instance not completed by the deadline is reported as not evaluated. Rows: D:/runs/rankcert/a6/heldout/.",
+  "selection_basis_correction_2026-11-10_0700": "The selection_basis sentence 'R-PAIR-S6 is the only candidate that meets the 60 % bar on both required families' is wrong: R-PAIR6 also meets it (QAOA2 7/10, arithmetic 12/15 counting the 3 incomplete arith24 instances as failures). The choice is unchanged and its basis is: R-PAIR-S6 has the highest development family success on QAOA2 (10/10 vs R-PAIR6 7/10, R-PAIR-S 6/10, R-PAIR 1/10) and ties R-PAIR6 on the 12 completed arithmetic instances (12/12 each). The frozen method, its parameters and the code commit are unchanged; this correction was written after held-out rows of arith16_s1006/s1007 had been computed, and it changes no choice."
+}

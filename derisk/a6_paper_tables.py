@@ -51,9 +51,8 @@ def main():
             tot[m][1] += e
         lines.append(' & '.join(cells) + ' \\\\')
     with open(os.path.join(OUT, 'cov.tex'), 'w') as f:
-        f.write('\\begin{table}[t]\\centering\\caption{Runs with at least one wrong \\IN{} or \\OUT{} label over the four '
-                'queries of the run (Err.) and the one-sided $95\\%$ Clopper-Pearson upper limit of the error rate (Up.), '
-                '$\\delta = 0.05$ per query.}\\label{tab:cov}\\small\\setlength{\\tabcolsep}{3pt}\n'
+        f.write('\\begin{table}[t]\\centering\\caption{Runs with a wrong \\IN{} or \\OUT{} label in any of their four queries (Err.) '
+                'and the $95\\%$ upper limit of the error rate (Up.).}\\label{tab:cov}\\small\\setlength{\\tabcolsep}{3pt}\n'
                 '\\begin{tabular}{l|rrr|rrr}\\hline\n & \\multicolumn{3}{c|}{Development} & \\multicolumn{3}{c}{Held-out} \\\\\n'
                 'Bounds & Runs & Err. & Up. & Runs & Err. & Up. \\\\ \\hline\n')
         f.write('\n'.join(lines) + '\n\\hline\\end{tabular}\\end{table}\n')
@@ -94,10 +93,8 @@ def main():
         bl1_out_any = bl1_out_any or any(x['BL1_out_any'] for x in ev)
         rows.append(' & '.join(cells) + ' \\\\')
     with open(os.path.join(OUT, 'a6.tex'), 'w') as f:
-        f.write('\\begin{table*}[t]\\centering\\caption{Held-out instances, top-$10$ query, $N = 10^5$ shots per '
-                'subexperiment ($B \\approx 5 \\cdot 10^6$), $10$ repetitions each: mean share of sure members labelled '
-                '\\IN{} ($\\pm$ standard deviation over all runs of the row), mean share of sure non-members labelled '
-                '\\OUT{}, and instances that meet the success rule.'
+        f.write('\\begin{table*}[t]\\centering\\caption{Held-out instances, top-$10$ query, $N = 10^5$: mean \\IN{} share ($\\pm$ standard '
+                'deviation over runs), mean \\OUT{} share, and instances meeting the success rule.'
                 '}\\label{tab:a6}\\small\n\\begin{tabular}{lrr|rrr|rrr}\\hline\n'
                 ' & & BL1 & \\multicolumn{3}{c|}{R-CP} & \\multicolumn{3}{c}{Ours} \\\\\n'
                 'Circuit & Inst. & \\IN{} & \\IN{} & \\OUT{} & Succ. & \\IN{} & \\OUT{} & Succ. \\\\ \\hline\n')
@@ -130,8 +127,8 @@ def main():
     na = ab.get('arith|R-PAIR-S6', [0, 0, 0])[2]
     nq = ab.get('qaoa2|R-PAIR-S6', [0, 0, 0])[2]
     with open(os.path.join(OUT, 'abl.tex'), 'w') as f:
-        f.write('\\begin{table}[t]\\centering\\caption{Ablation on the development instances ($%d$ arithmetic, $%d$ QAOA) at '
-                '$N = 10^5$: mean top-$10$ \\IN{} and \\OUT{} shares over $10$ repetitions.}\\label{tab:abl}\\small\n'
+        f.write('\\begin{table}[t]\\centering\\caption{Ablation on development instances ($%d$ arithmetic, $%d$ QAOA), $N = 10^5$: mean '
+                'top-$10$ \\IN{} and \\OUT{} shares.}\\label{tab:abl}\\small\n'
                 '\\begin{tabular}{lrr|rr}\\hline\n & \\multicolumn{2}{c|}{Arithmetic} & \\multicolumn{2}{c}{QAOA} \\\\\n'
                 'Bounds & \\IN{} & \\OUT{} & \\IN{} & \\OUT{} \\\\ \\hline\n' % (na, nq))
         f.write('\n'.join(rows) + '\n\\hline\\end{tabular}\\end{table}\n')
@@ -156,10 +153,8 @@ def main():
             '{:.1e}'.format(o['strings_evaluated'] / 2 ** m).replace('e-0', 'e-'), o['n_in'], '{:,}'.format(o['n_und']).replace(',', '{,}'),
             o['seconds'], q['seconds'] if q else float('nan'), ('%.1f' % (ens / 86400)) if ens else '--'))
     with open(os.path.join(OUT, 'search.tex'), 'w') as f:
-        f.write('\\begin{table}[t]\\centering\\caption{Search beyond enumeration (QAOA, top-$10$, one run per row): strings '
-                'evaluated exactly and their share of $2^m$, \\IN{} and \\UND{} counts (all other strings are \\OUT{}), '
-                'time of ours and of QCut\'s \\texttt{top()} in seconds, and extrapolated enumeration '
-                'time in days.}\\label{tab:search}\\small\\setlength{\\tabcolsep}{2.5pt}\n'
+        f.write('\\begin{table}[t]\\centering\\caption{Search on QAOA, top-$10$: strings evaluated, \\IN{} and \\UND{} counts, times in '
+                'seconds, and extrapolated enumeration time in days.}\\label{tab:search}\\small\\setlength{\\tabcolsep}{2.5pt}\n'
                 '\\begin{tabular}{rrrrrrrrr}\\hline\n$m$ & $N$ & Evaluated & Share & \\IN{} & \\UND{} & Ours & '
                 '\\texttt{top()} & Enum. \\\\ \\hline\n')
         f.write('\n'.join(rows) + '\n\\hline\\end{tabular}\\end{table}\n')

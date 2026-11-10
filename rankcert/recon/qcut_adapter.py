@@ -75,7 +75,7 @@ def build_model(experiment) -> CutModel:
             widths.append(width)
             # Subexperiment identity = exactly QCut's deduplication key (execution/circuit_knitting.py _deduplicate):
             # (subcircuit index, circuit_fingerprint). A distinct key is a separately submitted circuit, i.e. an
-            # independent shot batch (A2). Fixes review.
+            # independent shot batch (A2).
             key = (i, circuit_fingerprint(qc, fp_cache))
             if key not in index:
                 index[key] = len(subexps)

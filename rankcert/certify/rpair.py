@@ -4,7 +4,7 @@ certify(model, pilot, counts, ks, mode) -> per query k a label answer {cand, can
 the listed labels, every other string carries the label `rest` (OUT, or UND after the empty-interval fallback).
 mode = 'dense' computes everything on the 2^m vector (reference); mode = 'search' never materialises it: the pilot
 top-|A| comes from the bit-level search on point factors, L0_(k) from BitSearcher.topk, and only the strings with
-U0 >= T_k = min(L0_(k), min_A L, min_A U) are collected (T3 / R4 eq. (21)–(22): every other string is OUT with the k
+U0 >= T_k = min(L0_(k), min_A L, min_A U) are collected (the derivation: every other string is OUT with the k
 strings of largest L0 as witnesses). Both modes use the same arithmetic, so their labels are identical (tested).
 Pilot ranking ties are broken by string index (block order), as in derisk/repair3_run.py.
 mode = 'auto' runs the search with a frontier cap (AUTO_CAP) and falls back to the dense arithmetic when the collection
@@ -58,7 +58,7 @@ from rankcert.search.bitbnb import BitSearcher, FrontierCap
 
 D0, DS, DP = 0.005, 0.005, 0.04
 NA = 32
-# Repair 6: pilot-selected set of NA6 strings; delta split region / scores / pairs /
+# variant r6: pilot-selected set of NA6 strings; delta split region / scores / pairs /
 # factor functionals; factor radii min(CP, functional Bernstein); variance envelope = LP over the region; bilinear remainder
 # of two-factor products bounded by Bernstein conditional on the other side's samples (min with the deterministic bound).
 NA6 = 128
@@ -290,7 +290,7 @@ class _Terms:
         return 1.0 / self.M + sum(c * float(np.prod([f[2] for f in fs])) for c, fs in self.terms(x, True))
 
     def radius(self, terms_, t):
-        """R4 / T2 eq. (10)-(13) for products of any number of factors."""
+        """the derivation for products of any number of factors."""
         if self.sparse:
             return self._radius_sparse(terms_, t)
         S = len(self.qhat)
@@ -692,7 +692,7 @@ COLLECTS = ('r4', 'tight')
 
 def certify(model, pilot, counts, ks=(5, 10), mode='search', selected=None, taus=(0.01, 0.05), cap=AUTO_CAP,
             variant='r4', delta=None, sparse=None, collect='r4'):
-    """variant 'r4': the derivation construction (A6 methods R-PAIR / R-PAIR-S); 'r6': repair 6.
+    """variant 'r4': the derivation construction (A6 methods R-PAIR / R-PAIR-S); 'r6': variant r6.
     delta: total level (default None = the registered 0.05 split); otherwise every share is scaled by delta / 0.05.
     sparse: None = auto (sparse functional path iff max_e |Z_e| > SPARSE_AUTO), True / False forced (module docstring).
 

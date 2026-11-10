@@ -3,7 +3,7 @@ construction: pilot (5 % of each subexperiment's shots, exact hypergeometric spl
 selects A = pilot top-32 strings and the pairs among pilot ranks max(1, k-5) .. k+2; inference shots give the all-string
 CP region C0 (delta0 = 0.005, interval propagation L0, U0), Bernstein score bounds for A (delta_s = 0.005,
 t_s = log(2|A|/delta_s)) and Bernstein difference bounds for the pairs (delta_p = 0.04, t_p = log(2|P|/delta_p));
-three-valued top-k labels with certified orderings (R3 eq. 16). Faithful generalisation of an earlier prototype
+three-valued top-k labels with certified orderings (the derivation. Faithful generalisation of an earlier prototype
 (same arithmetic) to any 2-subcircuit instance and k in {5, 10}; one procedure per query k at delta = 0.05.
 
 python -m derisk.repair3_run <circuit> --Ns 1000,10000,100000,1000000 --reps 0-29

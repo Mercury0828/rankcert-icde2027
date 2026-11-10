@@ -1,4 +1,4 @@
-"""Repair 6: search = dense labels; the LP envelope is the exact LP optimum;
+"""variant r6: search = dense labels; the LP envelope is the exact LP optimum;
 the bilinear-remainder and factor-radius bounds hold on Monte Carlo draws; the default variant is unchanged."""
 import os
 import pickle

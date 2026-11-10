@@ -2,7 +2,7 @@
 uniform-allocation safeguard of the derivation: reserve
 b_e = ceil(BETA * U_e) for every subexperiment (U_e = balanced uniform split of the inference budget), distribute the rest
 by the pilot Neyman weights w_e = sqrt(a_e) / sum_j sqrt(a_j) (floor + largest remainder, ties by index).
-BETA = 1/2. Everything else (pilot, draws, inference, labels) is repair 4 unchanged (derisk/repair4_run.py).
+BETA = 1/2. Everything else (pilot, draws, inference, labels) is variant r4 unchanged (derisk/repair4_run.py).
 
 python -m derisk.repair5_run <circuit> --Ns ... --reps a-b
 Rows -> ./data/phase0/repair5/<circuit>.jsonl (resumable).

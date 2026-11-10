@@ -1,4 +1,4 @@
-"""R-PAIR-N = R-PAIR (repair 3,
+"""R-PAIR-N = R-PAIR (variant r3,
 derisk/repair3_run.py, unchanged inference) + a pilot-based variance-optimal (Neyman) allocation of the inference shots
 across subexperiments (the derivation), fixed total budget S * N.
 
@@ -6,7 +6,7 @@ Draws (fresh, independent, all counted in the budget):
   pilot     : N // 20 shots per subexperiment, seed SeedSequence([cid, N, rep, 20261107, 41])
   inference : n_e shots for subexperiment e, seed SeedSequence([cid, N, rep, 20261107, 42]); sum_e n_e = S*N - S*(N//20)
 Allocation (uses the pilot only): for the top-10 pairs (pilot ranks 5..12) compute the first-order influence functions
-W_e of each pair difference at the pilot estimate (R3 eq. (6)); a_e = sum over pairs of Var_{pilot q_e}(W_e);
+W_e of each pair difference at the pilot estimate (the derivation); a_e = sum over pairs of Var_{pilot q_e}(W_e);
 n_e proportional to sqrt(a_e), with floor n_e >= FLOOR * (inference total / S); integer rounding by largest remainder.
 Inference and labels: exactly R-PAIR (same deltas, A, pairs, rule), with per-subexperiment inference sizes n_e.
 

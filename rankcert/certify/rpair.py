@@ -692,7 +692,7 @@ COLLECTS = ('r4', 'tight')
 
 def certify(model, pilot, counts, ks=(5, 10), mode='search', selected=None, taus=(0.01, 0.05), cap=AUTO_CAP,
             variant='r4', delta=None, sparse=None, collect='r4'):
-    """variant 'r4': C1-region R4 construction (A6 methods R-PAIR / R-PAIR-S); 'r6': repair 6.
+    """variant 'r4': the derivationonstruction (A6 methods R-PAIR / R-PAIR-S); 'r6': repair 6.
     delta: total level (default None = the registered 0.05 split); otherwise every share is scaled by delta / 0.05.
     sparse: None = auto (sparse functional path iff max_e |Z_e| > SPARSE_AUTO), True / False forced (module docstring).
 

@@ -62,7 +62,7 @@ def clopper_pearson(k: np.ndarray, N: float, alpha: float):
     k = np.asarray(k, dtype=float)
     lo = np.where(k > 0, _beta.ppf(alpha / 2, k, N - k + 1), 0.0)
     if alpha < 1e-9:   # 1 - alpha/2 loses precision (rounds to 1 near 1e-16): use the upper-tail inverse. Never taken
-        # at the A6 levels (smallest alpha there 6.1e-9), so those intervals are bit-for-bit unchanged (C4-seq R1).
+        # at the A6 levels (smallest alpha there 6.1e-9), so those intervals are bit-for-bit unchanged (the derivation).
         hi = np.where(k < N, _beta.isf(alpha / 2, k + 1, N - k), 1.0)
     else:
         hi = np.where(k < N, _beta.ppf(1 - alpha / 2, k + 1, N - k), 1.0)

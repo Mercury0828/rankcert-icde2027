@@ -1,6 +1,6 @@
-"""D1 repair attempt 4: R-PAIR-N = R-PAIR (repair 3,
+"""R-PAIR-N = R-PAIR (repair 3,
 derisk/repair3_run.py, unchanged inference) + a pilot-based variance-optimal (Neyman) allocation of the inference shots
-across subexperiments (C1-region R3, B2 eq. (22)), fixed total budget S * N.
+across subexperiments (the derivation), fixed total budget S * N.
 
 Draws (fresh, independent, all counted in the budget):
   pilot     : N // 20 shots per subexperiment, seed SeedSequence([cid, N, rep, 20261107, 41])

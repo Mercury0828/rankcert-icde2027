@@ -1,4 +1,4 @@
-"""D1 repair attempt 3: R-PAIR = C1-region R3
+"""R-PAIR = the derivation
 construction: pilot (5 % of each subexperiment's shots, exact hypergeometric split)
 selects A = pilot top-32 strings and the pairs among pilot ranks max(1, k-5) .. k+2; inference shots give the all-string
 CP region C0 (delta0 = 0.005, interval propagation L0, U0), Bernstein score bounds for A (delta_s = 0.005,

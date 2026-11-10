@@ -103,7 +103,7 @@ def test_sequential_run(rule):
 
 
 def test_clopper_pearson_tiny_level():
-    """C4-seq R1: the upper endpoint stays non-trivial and inside the Hoeffding interval at tiny levels, and is unchanged
+    """the derivation: the upper endpoint stays non-trivial and inside the Hoeffding interval at tiny levels, and is unchanged
     (ppf path) at the A6 levels."""
     from scipy.stats import beta
     from rankcert.regions.regions import clopper_pearson

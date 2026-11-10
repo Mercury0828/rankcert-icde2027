@@ -1,5 +1,5 @@
-"""D1 repair attempt 5: R-PAIR-S = R-PAIR-N with the
-uniform-allocation safeguard of C1-region R4 (the method description, part (b), eq. (23)): reserve
+"""R-PAIR-S = R-PAIR-N with the
+uniform-allocation safeguard of the derivationhe method description, part (b), eq. (23)): reserve
 b_e = ceil(BETA * U_e) for every subexperiment (U_e = balanced uniform split of the inference budget), distribute the rest
 by the pilot Neyman weights w_e = sqrt(a_e) / sum_j sqrt(a_j) (floor + largest remainder, ties by index).
 BETA = 1/2. Everything else (pilot, draws, inference, labels) is repair 4 unchanged (derisk/repair4_run.py).

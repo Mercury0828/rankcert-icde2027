@@ -2,7 +2,7 @@
 
 Code, result rows and extended version (full proofs and experimental configuration, `extended_version.pdf`) for the
 IEEE ICDE 2027 submission by Jiachen Shen (University of Houston) and Hui Zhong (Miami University).
-Archived on Zenodo: https://doi.org/10.5281/zenodo.24120178
+Archived on Zenodo: https://doi.org/10.5281/zenodo.24120177
 
 ## Layout
 

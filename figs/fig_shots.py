@@ -33,7 +33,7 @@ for ax, (fam, title) in zip(axs, (('arith', 'Adder'), ('qaoa2', 'QAOA'))):
         ax.spines[s].set_visible(False)
 axs[0].set_ylabel('IN share')
 axs[0].legend(loc='upper left', frameon=False, handlelength=1.6, labelspacing=0.25, borderaxespad=0.1)
-fig.supxlabel('Shots per subexperiment', fontsize=9, y=0.02)
+fig.supxlabel('Nominal shots per subexperiment, N = B/|S|', fontsize=9, y=0.02)
 fig.tight_layout(pad=0.3, w_pad=0.6)
 fig.savefig(os.path.join(HERE, 'fig_shots.pdf'), bbox_inches='tight', pad_inches=0.03)
 fig.savefig(os.path.join(HERE, 'fig_shots.png'), dpi=300, bbox_inches='tight', pad_inches=0.03)

@@ -93,8 +93,9 @@ def main():
         bl1_out_any = bl1_out_any or any(x['BL1_out_any'] for x in ev)
         rows.append(' & '.join(cells) + ' \\\\')
     with open(os.path.join(OUT, 'a6.tex'), 'w') as f:
-        f.write('\\begin{table*}[t]\\centering\\caption{Held-out instances, top-$10$ query, $N = 10^5$: mean \\IN{} share ($\\pm$ standard '
-                'deviation over runs), mean \\OUT{} share, and instances meeting the success rule.'
+        f.write('\\begin{table*}[t]\\centering\\caption{Held-out instances, top-$10$ query, $N = 10^5$: mean share of sure members labelled \\IN{} ($\\pm$ standard '
+                'deviation over the $50$ run-level shares of the row), mean \\OUT{} share (rounded to five decimals, so '
+                '$1.00000$ need not mean that every sure non-member is \\OUT{}), and instances meeting the success rule.'
                 '}\\label{tab:a6}\\small\n\\begin{tabular}{lrr|rrr|rrr}\\hline\n'
                 ' & & BL1 & \\multicolumn{3}{c|}{R-CP} & \\multicolumn{3}{c}{Ours} \\\\\n'
                 'Circuit & Inst. & \\IN{} & \\IN{} & \\OUT{} & Succ. & \\IN{} & \\OUT{} & Succ. \\\\ \\hline\n')
@@ -153,10 +154,10 @@ def main():
             '{:.1e}'.format(o['strings_evaluated'] / 2 ** m).replace('e-0', 'e-'), o['n_in'], '{:,}'.format(o['n_und']).replace(',', '{,}'),
             o['seconds'], q['seconds'] if q else float('nan'), ('%.1f' % (ens / 86400)) if ens else '--'))
     with open(os.path.join(OUT, 'search.tex'), 'w') as f:
-        f.write('\\begin{table}[t]\\centering\\caption{Search on QAOA, top-$10$: strings evaluated, \\IN{} and \\UND{} counts, times in '
-                'seconds, and extrapolated enumeration time in days.}\\label{tab:search}\\small\\setlength{\\tabcolsep}{2.5pt}\n'
-                '\\begin{tabular}{rrrrrrrrr}\\hline\n$m$ & $N$ & Evaluated & Share & \\IN{} & \\UND{} & Ours & '
-                '\\texttt{top()} & Enum. \\\\ \\hline\n')
+        f.write('\\begin{table}[t]\\centering\\caption{Search on QAOA, top-$10$, one run per row. Here $N$ counts uniform inference shots per '
+                'subexperiment, with an additional $N/20$ pilot shots.}\\label{tab:search}\\small\\setlength{\\tabcolsep}{2pt}\n'
+                '\\begin{tabular}{rrrrrrrrr}\\hline\n$m$ & $N$ & Eval. & Eval. & \\IN{} & \\UND{} & Ours & '
+                '\\texttt{top()} & Enum. \\\\\n & & & $/2^m$ & & & (s) & (s) & est.\\ (d) \\\\ \\hline\n')
         f.write('\n'.join(rows) + '\n\\hline\\end{tabular}\\end{table}\n')
     # Tab-Shots (development, IN share vs N)
     sh = d['dev_in_vs_N']
